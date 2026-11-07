@@ -1,5 +1,26 @@
 {
+  "name": "dungeonhunt",
+  "version": "1.0.0",
+  "description": "teste inquirer",
+  "keywords": [],
+  "homepage": "https://github.com/Lucyfuture/DungeonHunt#readme",
+  "bugs": {
+    "url": "https://github.com/Lucyfuture/DungeonHunt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucyfuture/DungeonHunt.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "DungeonHunt.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
+    "inquirer": "^14.2.5",
     "prompt-sync": "^4.2.0"
   }
 }
