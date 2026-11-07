@@ -1,19 +1,24 @@
 const prompt = require("prompt-sync")()
 
-//estatisticas globais
+//ESTATISTICAS GLOBAIS
 
     //heroi
     let Heroi = 0
-    var DanoBase = 1
-    var DanoHeroi = 1
-    var VidaHeroi = 1    
-    var ManaHeroi = 1
+    let VidaMaxHeroi = 1
+    let VidaHeroi = 1
+    let DanoBase = 1
+    let DanoHeroi = 1
+    let ManaHeroi = 1
 
     //inimigo
     let Inimigo = 0
-    var VidaInimigo = 1
-    var DanoInimigo = 1
-    var ManaInimigo = 1
+    let VidaMaxInimigo = 1
+    let VidaInimigo = 1
+    let DanoInimigo = 1
+    let ManaInimigo = 1
+
+//INVENTARIO
+let inventario = []
 
 //FUNÇÕES====================================
 const OpcaoInvalida = function() {
@@ -54,14 +59,16 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
         batalha()
     }
 }
+
 const batalha = function() {
     VidaInimigo = Math.ceil(Math.random() * 100);
+    VidaMaxInimigo = VidaInimigo
     do {
         DanoInimigo = Math.ceil(Math.random() * 20);
         DanoHeroi = Math.ceil(Math.random() * DanoBase);
         console.log(`
             
-                         HP Heroi: ${VidaHeroi} | HP Inimigo: ${VidaInimigo}
+                     HP Heroi: ${VidaHeroi}/${VidaMaxHeroi} | HP Inimigo: ${VidaInimigo}/${VidaMaxInimigo}
                    
           .                                                      .
         .n                   .                 .                  n.
@@ -193,6 +200,7 @@ const menudeexploracao = function() {
             case 1:
                 Heroi = "Mago"
                 VidaHeroi = 80
+                VidaMaxHeroi = 80
                 DanoBase = 15
                 ManaHeroi = 100
                 Continuar = false
@@ -200,6 +208,7 @@ const menudeexploracao = function() {
             case 2:
                 Heroi = "Cavaleiro"
                 VidaHeroi = 120
+                VidaMaxHeroi = 120
                 DanoBase = 20
                 ManaHeroi = 50
                 Continuar = false
@@ -207,8 +216,17 @@ const menudeexploracao = function() {
             case 3:
                 Heroi = "Arqueiro"
                 VidaHeroi = 60
+                VidaMaxHeroi = 60
                 DanoBase = 25
                 ManaHeroi = 75
+                Continuar = false
+                break;
+            case 9999:
+                Heroi = "Saitama"
+                VidaHeroi = 9999
+                VidaMaxHeroi = 9999
+                DanoBase = 9999
+                ManaHeroi = 9999
                 Continuar = false
                 break;
             default:
@@ -232,6 +250,14 @@ const menudeexploracao = function() {
 //JOGO PRINCIPAL=============================
 
 {
-    menudeexploracao()
-    explorar()
-}
+    do {
+        menudeexploracao()
+        explorar()
+    }while (VidaHeroi > 0)
+        if (VidaHeroi <= 0) {
+            console.log("Você morreu! Fim de jogo.");
+            prompt("Pressione enter para continuar...");
+            process.exit()
+        }
+    }
+        
